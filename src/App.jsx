@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 // ════════════════════════════════════════════════════════
 //  ⚠️  把你的 Google Apps Script 網址貼在這裡
 // ════════════════════════════════════════════════════════
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbzw4ZmQ_RZZ5CgcG-0BHUKi0jvt3DBL959_d3h54CiWcAA-Li7U15yOYCIfrdQ9__X0hw/exec";
+const SHEET_URL = "const SHEET_URL = "https://script.google.com/macros/s/AKfycbwMA2jwcQkn6KjliXmVy0N0g7oXVYGLPlfsbepFebUr6CSgSudh-6pbLBqyjNndT8Qf8g/exec";
 
 // ════════════════════════════════════════════════════════
 //  ⚠️  課程報名連結（招生用）
