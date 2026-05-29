@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 // ════════════════════════════════════════════════════════
 //  ⚠️  把你的 Google Apps Script 網址貼在這裡
 // ════════════════════════════════════════════════════════
-const SHEET_URL = "const SHEET_URL = "https://script.google.com/macros/s/AKfycbwMA2jwcQkn6KjliXmVy0N0g7oXVYGLPlfsbepFebUr6CSgSudh-6pbLBqyjNndT8Qf8g/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbwMA2jwcQkn6KjliXmVy0N0g7oXVYGLPlfsbepFebUr6CSgSudh-6pbLBqyjNndT8Qf8g/exec";
 
 // ════════════════════════════════════════════════════════
 //  ⚠️  課程報名連結（招生用）
@@ -411,11 +411,11 @@ export default function App() {
                   </div>
                 </div>
                 <div style={{marginBottom:14}}>
-                  <label style={{display:"block",fontSize:12,color:B.brownL,fontWeight:700,marginBottom:6}}>家長 Email</label>
+                  <label style={{display:"block",fontSize:12,color:B.brownL,fontWeight:700,marginBottom:6}}>家長 Email <span style={{color:B.pink}}>*必填</span></label>
                   <input value={introEmail} onChange={e=>setIntroEmail(e.target.value)} placeholder="example@gmail.com" type="email"
                     style={{width:"100%",padding:"11px 14px",borderRadius:14,border:`2px solid ${B.orange}40`,fontSize:15,color:B.brown,background:B.cream}}/>
                 </div>
-                <button onClick={startQ} disabled={!childName.trim()} style={{width:"100%",padding:"14px 0",background:childName.trim()?B.blue:"#C0C8D0",color:"white",border:"none",borderRadius:16,fontSize:15,fontWeight:700,cursor:childName.trim()?"pointer":"not-allowed",boxShadow:childName.trim()?`0 4px 0 ${B.blueDark}`:"none",animation:childName.trim()?"pulse 2s infinite":"none"}}>
+                <button onClick={startQ} disabled={!childName.trim()||!introEmail.trim()||!introEmail.includes("@")} style={{width:"100%",padding:"14px 0",background:childName.trim()?B.blue:"#C0C8D0",color:"white",border:"none",borderRadius:16,fontSize:15,fontWeight:700,cursor:childName.trim()?"pointer":"not-allowed",boxShadow:childName.trim()?`0 4px 0 ${B.blueDark}`:"none",animation:childName.trim()?"pulse 2s infinite":"none"}}>
                   開始探索 {childName.trim()?`${childName.trim()}的天賦`:""} →
                 </button>
               </div>
