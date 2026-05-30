@@ -54,6 +54,8 @@ const QS = [
     choices:[{text:"很常，他很容易發現別人的情緒變化",score:{under:4}},{text:"有時候，但不是很穩定",score:{under:2}},{text:"比較專注在自己的事，不太注意別人",score:{under:1,act:2}},{text:"對事物很細心，但對人不一定",score:{under:2,plan:3}}]},
   { q:"這段時間，有沒有哪一刻讓你覺得「這個孩子真的長大了」？", icon:"🌟",
     choices:[{text:"他說了一句話，讓我眼眶有點紅",score:{expr:3,under:2}},{text:"他自己解決了一個以前需要我幫忙的問題",score:{act:4,plan:2}},{text:"他主動去關心了一個朋友",score:{under:4,expr:2}},{text:"他說出一個很有深度的問題",score:{creat:3,under:3}}]},
+  { q:"從哪裡得知「綻藍教育」呢？", icon:"🔎", noScore:true,
+    choices:[{text:"朋友 / 家長推薦",score:{}},{text:"Instagram / Facebook",score:{}},{text:"LINE 群組",score:{}},{text:"路過看到",score:{}},{text:"第一次聽到",score:{}},{text:"其他",score:{}}]},
 ];
 
 // ── 角色 SVG ──────────────────────────────────────────
@@ -246,6 +248,7 @@ export default function App() {
     const newAnswers = [...answers];
     newAnswers[cur] = QS[cur].choices[sel].text;
     setAnswers(newAnswers);
+    if(QS[cur].noScore) setHowKnow(QS[cur].choices[sel].text);
     setScores(ns);
     if(cur < QS.length-1){ setCur(c=>c+1); setSel(null); }
     else {
@@ -422,17 +425,7 @@ export default function App() {
                   <input value={district} onChange={e=>setDistrict(e.target.value)} placeholder="例：台北大直、新北板橋" maxLength={20}
                     style={{width:"100%",padding:"11px 14px",borderRadius:14,border:`2px solid ${B.orange}40`,fontSize:15,color:B.brown,background:B.cream}}/>
                 </div>
-                <div style={{marginBottom:14}}>
-                  <label style={{display:"block",fontSize:12,color:B.brownL,fontWeight:700,marginBottom:6}}>怎麼知道綻藍的？</label>
-                  <div style={{display:"flex",flexWrap:"wrap",gap:8}}>
-                    {["朋友 / 家長推薦","Instagram / Facebook","LINE 群組","路過看到","其他"].map(opt=>(
-                      <button key={opt} onClick={()=>setHowKnow(opt)}
-                        style={{padding:"8px 14px",borderRadius:12,border:howKnow===opt?`2.5px solid ${B.orange}`:`2px solid ${B.brownL}30`,background:howKnow===opt?`${B.orange}18`:"white",color:howKnow===opt?B.orangeDark:B.brown,fontSize:12,fontWeight:howKnow===opt?700:400,cursor:"pointer",transition:"all .15s"}}>
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                </div>
+
                 <button onClick={startQ} disabled={!childName.trim()||!introEmail.trim()||!introEmail.includes("@")} style={{width:"100%",padding:"14px 0",background:childName.trim()?B.blue:"#C0C8D0",color:"white",border:"none",borderRadius:16,fontSize:15,fontWeight:700,cursor:childName.trim()?"pointer":"not-allowed",boxShadow:childName.trim()?`0 4px 0 ${B.blueDark}`:"none",animation:childName.trim()?"pulse 2s infinite":"none"}}>
                   開始探索 {childName.trim()?`${childName.trim()}的天賦`:""} →
                 </button>
