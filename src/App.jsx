@@ -208,6 +208,8 @@ export default function App() {
   const [childName, setName]    = useState("");
   const [childAge, setChildAge] = useState("");
   const [introEmail, setIntroEmail] = useState("");
+  const [district, setDistrict] = useState("");
+  const [howKnow, setHowKnow] = useState("");
   const [parentName, setParentName] = useState("");
   const [parentPhone, setParentPhone] = useState("");
   const [parentEmail, setParentEmail] = useState("");
@@ -257,7 +259,7 @@ export default function App() {
         if(!submitted) {
           setSubmitted(true);
           sendToSheet({
-            childName: childName.trim(), childAge: childAge.trim(), parentEmail: introEmail.trim(),
+            childName: childName.trim(), childAge: childAge.trim(), parentEmail: introEmail.trim(), district: district.trim(), howKnow: howKnow,
             topRole: PAL[top].role, topLabel: PAL[top].label,
             secRole: PAL[sec].role, secLabel: PAL[sec].label,
             cultLabel: PAL[cult].label,
@@ -290,7 +292,7 @@ export default function App() {
     setPhase("intro"); setCur(0); setSel(null); setName(""); setAnswers([]);
     setScores({expr:0,plan:0,under:0,creat:0,act:0});
     setTop(null); setSec(null); setCult(null); setBR(false);
-    setChildAge(""); setIntroEmail("");
+    setChildAge(""); setIntroEmail(""); setDistrict(""); setHowKnow("");
     setDL("idle"); setShareMsg(""); setSubmitted(false);
     setPledge(""); setShowContact(false);
     setParentName(""); setParentPhone(""); setParentEmail(""); setContactAgreed(false);
@@ -410,10 +412,26 @@ export default function App() {
                     ))}
                   </div>
                 </div>
-                <div style={{marginBottom:14}}>
+                <div style={{marginBottom:10}}>
                   <label style={{display:"block",fontSize:12,color:B.brownL,fontWeight:700,marginBottom:6}}>家長 Email <span style={{color:B.pink}}>*必填</span></label>
                   <input value={introEmail} onChange={e=>setIntroEmail(e.target.value)} placeholder="example@gmail.com" type="email"
                     style={{width:"100%",padding:"11px 14px",borderRadius:14,border:`2px solid ${B.orange}40`,fontSize:15,color:B.brown,background:B.cream}}/>
+                </div>
+                <div style={{marginBottom:10}}>
+                  <label style={{display:"block",fontSize:12,color:B.brownL,fontWeight:700,marginBottom:6}}>就讀地區</label>
+                  <input value={district} onChange={e=>setDistrict(e.target.value)} placeholder="例：台北大直、新北板橋" maxLength={20}
+                    style={{width:"100%",padding:"11px 14px",borderRadius:14,border:`2px solid ${B.orange}40`,fontSize:15,color:B.brown,background:B.cream}}/>
+                </div>
+                <div style={{marginBottom:14}}>
+                  <label style={{display:"block",fontSize:12,color:B.brownL,fontWeight:700,marginBottom:6}}>怎麼知道綻藍的？</label>
+                  <div style={{display:"flex",flexWrap:"wrap",gap:8}}>
+                    {["朋友 / 家長推薦","Instagram / Facebook","LINE 群組","路過看到","其他"].map(opt=>(
+                      <button key={opt} onClick={()=>setHowKnow(opt)}
+                        style={{padding:"8px 14px",borderRadius:12,border:howKnow===opt?`2.5px solid ${B.orange}`:`2px solid ${B.brownL}30`,background:howKnow===opt?`${B.orange}18`:"white",color:howKnow===opt?B.orangeDark:B.brown,fontSize:12,fontWeight:howKnow===opt?700:400,cursor:"pointer",transition:"all .15s"}}>
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
                 </div>
                 <button onClick={startQ} disabled={!childName.trim()||!introEmail.trim()||!introEmail.includes("@")} style={{width:"100%",padding:"14px 0",background:childName.trim()?B.blue:"#C0C8D0",color:"white",border:"none",borderRadius:16,fontSize:15,fontWeight:700,cursor:childName.trim()?"pointer":"not-allowed",boxShadow:childName.trim()?`0 4px 0 ${B.blueDark}`:"none",animation:childName.trim()?"pulse 2s infinite":"none"}}>
                   開始探索 {childName.trim()?`${childName.trim()}的天賦`:""} →
@@ -602,7 +620,10 @@ export default function App() {
               </div>
 
               {/* 底部 */}
-              <div style={{padding:"10px 22px 28px",background:B.bg}}>
+              <div style={{padding:"10px 22px 4px",background:B.bg}}>
+                <p style={{fontSize:11,color:B.brownL,textAlign:"center",lineHeight:1.8}}>填寫完成後，我們將不定期寄送綻藍教育最新活動、營隊及課程資訊至您的信箱。</p>
+              </div>
+              <div style={{padding:"6px 22px 28px",background:B.bg}}>
                 <button onClick={restart} style={{width:"100%",padding:"11px 0",background:"white",border:`2px solid ${B.brownL}30`,borderRadius:14,fontSize:13,color:B.brownL,fontWeight:500,cursor:"pointer"}}>再填一次</button>
               </div>
             </>
