@@ -539,7 +539,7 @@ export default function App() {
                 </div>
                 <div style={{padding:"12px 0 18px",display:"flex",flexDirection:"column",alignItems:"center",gap:4}}>
                   <Logo width={90}/>
-                  <div style={{fontSize:10,color:B.brownL,letterSpacing:".06em"}}>孩子天賦的養成基地</div>
+                  <div style={{fontSize:10,color:B.brownL,letterSpacing:".06em"}}>五力五家正向教養｜孩子天賦的養成基地</div>
                 </div>
               </div>
 
