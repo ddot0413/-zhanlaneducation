@@ -248,7 +248,8 @@ export default function App() {
     const newAnswers = [...answers];
     newAnswers[cur] = QS[cur].choices[sel].text;
     setAnswers(newAnswers);
-    if(QS[cur].noScore) setHowKnow(QS[cur].choices[sel].text);
+    const currentHowKnow = QS[cur].noScore ? QS[cur].choices[sel].text : howKnow;
+    if(QS[cur].noScore) setHowKnow(currentHowKnow);
     setScores(ns);
     if(cur < QS.length-1){ setCur(c=>c+1); setSel(null); }
     else {
@@ -262,7 +263,7 @@ export default function App() {
         if(!submitted) {
           setSubmitted(true);
           sendToSheet({
-            childName: childName.trim(), childAge: childAge.trim(), parentEmail: introEmail.trim(), district: district.trim(), howKnow: howKnow,
+            childName: childName.trim(), childAge: childAge.trim(), parentEmail: introEmail.trim(), district: district.trim(), howKnow: currentHowKnow,
             topRole: PAL[top].role, topLabel: PAL[top].label,
             secRole: PAL[sec].role, secLabel: PAL[sec].label,
             cultLabel: PAL[cult].label,
