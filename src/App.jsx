@@ -55,7 +55,7 @@ const QS = [
   { q:"這段時間，有沒有哪一刻讓你覺得「這個孩子真的長大了」？", icon:"🌟",
     choices:[{text:"他說了一句話，讓我眼眶有點紅",score:{expr:3,under:2}},{text:"他自己解決了一個以前需要我幫忙的問題",score:{act:4,plan:2}},{text:"他主動去關心了一個朋友",score:{under:4,expr:2}},{text:"他說出一個很有深度的問題",score:{creat:3,under:3}}]},
   { q:"從哪裡得知「綻藍教育」呢？", icon:"🔎", noScore:true,
-    choices:[{text:"朋友 / 家長推薦",score:{}},{text:"Instagram / Facebook",score:{}},{text:"LINE 群組",score:{}},{text:"路過看到",score:{}},{text:"第一次聽到",score:{}},{text:"其他",score:{}}]},
+    choices:[{text:"朋友 / 家長推薦",score:{}},{text:"Instagram / Facebook",score:{}},{text:"LINE 群組",score:{}},{text:"路過看到",score:{}},{text:"第一次聽到",score:{}},{text:"我是綻藍的家長",score:{}}]},
 ];
 
 // ── 角色 SVG ──────────────────────────────────────────
